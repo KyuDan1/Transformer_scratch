@@ -211,11 +211,11 @@ scores.masked_fill(mask == 0, -float("inf"))
 
 """## Masked Attention"""
 
-def masked_scaled_dot_product_attention(query, key, value, mask=None):
+def masked_scaled_dot_product_attention(query, key, value):
   dim_k = query.size(-1)
   scores = torch.bmm(query, key.transpose(1, 2)) / sqrt(dim_k)
-  if mask is not None:
-    scores = scores.masked_fill(mask == 0, -float("inf"))
+  mask = torch.tril(torch.ones(scores.size(-1), scores.size(-1), device=scores.device)).unsqueeze(0)
+  scores = scores.masked_fill(mask == 0, -float("inf"))
   weights = F.softmax(scores, dim=-1)
   return torch.bmm(weights, value)
 
