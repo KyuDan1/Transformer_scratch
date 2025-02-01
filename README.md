@@ -4,7 +4,8 @@
 - attention_with_RoPE.py : Rotary positional encoding을 구현한 Transformer 모델.
 
 ```
-<br>
+## Example Model
+- 예시로 English to Korean training 한 모델: https://huggingface.co/Kyudan/transformer_Eng_to_Kor
 
 ## Youtube
 <br>
